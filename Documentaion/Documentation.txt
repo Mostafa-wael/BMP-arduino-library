@@ -1,0 +1,77 @@
+1) BMP ():
+- Return Type: Constructor.
+-Parameters:
+- Altitude measured at the ground to calibrate altitude (double).
+- OSS value which determines the accuracy -check it in the datasheet- (int).
+-Notes:	The initial value of altitude is “0” and for the OSS is “0” (medium accuracy).
+2) Initialize ():
+-Return Type: Void.
+-Parameters: Void.
+-Notes: Should be written after the “Serial.begin (….)” command.
+3) Read_data ():
+- Return Type: void.
+-Parameters: void.
+-Notes: Should be called before using any “get_data” function.
+
+
+4) set_Pressure ():
+- Return Type: Void.
+-Parameters: long.
+-Notes: To set the pressure explicitly.
+5) set_altitude ():
+- Return Type: Void.
+-Parameters: double.
+-Notes: To set the altitude explicitly.
+6) set_temperature ():
+- Return Type: Void.
+-Parameters: float.
+-Notes: To set the temperature explicitly.
+7) calibrate_altitude ():
+- Return Type: Void.
+-Parameters: double.
+-Notes: To calibrate the altitude explicitly.
+
+
+
+
+
+8) get_sealevel_pressure ():
+- Return Type: long.
+-Parameters: double.
+-Notes: return the pressure at sea-level by passing the current 
+altitude (float),should call “Read_data ()” before calling it.
+9) get_temperature ():
+- Return Type: Float.
+-Parameters: void.
+-Notes: Should call “Read_data ()” before calling it.
+10) get_Pressure ():
+- Return Type: long.
+-Parameters: void.
+-Notes: Should call “Read_data ()” before calling it.
+11) get_altitude ():
+- Return Type: Float.
+-Parameters: void.
+-Notes: Should call “Read_data ()” before calling it.
+
+
+
+
+12) Serial_print_data():
+- Return Type: Void.
+-Parameters: A (bool) is passed, if true then read data before printing 			    else, print the last data read.
+-Notes: The initial value of the bool is true.
+13) Serial_print_data_LabView():
+- Return Type: Void.
+-Parameters: A (bool) is passed, if true then read data before printing 			   else, print the last data read.
+-Notes: Prints the data in the form the lab view accepts , the initial 		    value of the bool is true.
+
+
+
+
+
+
+
+
+
+
+
