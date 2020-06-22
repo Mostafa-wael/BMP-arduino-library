@@ -1,15 +1,13 @@
 #pragma once
-
 #include <Wire.h>
 #include "Arduino.h"
-
 
 class BMP //for temperature ,Pressure and altitude
 
 {
  private : short BMP_AC1 ,BMP_AC2 ,BMP_AC3,BMP_B1,BMP_B2,BMP_MB,BMP_MC,BMP_MD;
-           long UT,UP,X1,X2,X3,B3,B5,B6,Pressure;
-           float temperature,altitude,to_calibrate_altitude;
+           long UT,UP,X1,X2,X3,B3,B5,B6,Pressure,temperature;
+		   double altitude;
            unsigned char  OSS;
            unsigned short BMP_AC4,BMP_AC5,BMP_AC6;
            unsigned long B4,B7;
@@ -18,32 +16,28 @@ class BMP //for temperature ,Pressure and altitude
 		   /////////////////////////////////////
 		   char BMP_adress;
 		   bool is_intilaized;
-
 		   int OSS_value;
+		   double to_calibrate_altitude;
 		   double get_real_altitude(float);
 
 
 
  public :
-          BMP(double to_calibrate_altitude=0, int OSS=0);
-          void initialize(); // should be written after the serial.begin command
-
+          BMP(double altitude_factor=0, int OSS=0);
+     	  void initialize();
 		  void set_temperature(float);
 		  void set_Pressure(long);
 		  void set_altitude(double);
 		  void calibrate_altitude (double);
 
-
 		  float get_temperature();
 		  long get_Pressure();
 		  long get_sealevel_pressure(float altitude_meters = 0);
-		  float get_altitude();
-
+		  double get_altitude();
 
 		  void Read_data(); //should be used before getting any data
-          void Serial_print_data (bool read=1);
-          void Serial_print_data_LabView(bool read=1);
-
+          void Serial_print_data (bool Read_Data=1);
+		  void Serial_print_data_LabView(bool Read_Data=1);
 
 		  ~BMP();
 };
@@ -63,5 +57,3 @@ class BMP //for temperature ,Pressure and altitude
 #define PRESSURE 0x34
 #define MC 0xBC
 #define MD 0xBE
-
-

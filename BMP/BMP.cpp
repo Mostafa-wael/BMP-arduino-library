@@ -40,18 +40,16 @@ long BMP::READ_REGR (char regrs){
 *															 *
 ***************************-*********************************/
 // A constructor which takes the altitude of the ground from the sea level and calibrates it and the OSS's value , the initial value of OSS is 0 (medium accuracy)
-BMP::BMP(double altitude_factor, int OSS)
+BMP::BMP(double altitude_factor=0, int OSS=0)
 {
 	BMP_adress=0x77;
 	OSS_value=OSS;
 
     to_calibrate_altitude=altitude_factor;
-	//initialize();
 }
 //initializing the sensor and reading data , N.B : check the datasheet for more details
 void BMP::initialize ()
 {
- //Serial.begin(9600);
  Wire.begin();
  // datasheet BMP page 15
 //1st block
@@ -167,19 +165,19 @@ void BMP::calibrate_altitude (double a)
 						Getters
 *															 *
 ***************************-*********************************/
-long BMP::get_sealevel_pressure(float altitude_meters )
+long   BMP::get_sealevel_pressure(float altitude_meters )
 {
   return (get_Pressure() / pow(1.0-altitude_meters/44330, 5.255));
 }
-float BMP::get_temperature()
+float  BMP::get_temperature()
 {
 return temperature;
 }
-long BMP::get_Pressure()
+long   BMP::get_Pressure()
 {
 return Pressure;
 }
-float BMP::get_altitude()
+double BMP::get_altitude()
 {
 	return altitude;
 }
